@@ -7,10 +7,10 @@ import { FirebaseServiceProvider } from "./../../providers/firebase-service/fire
 import { Observable } from "rxjs/Observable";
 
 @Component({
-  selector: "page-home",
-  templateUrl: "home.html"
+  selector: "page-step",
+  templateUrl: "step.html"
 })
-export class HomePage {
+export class StepPage {
   needItems: Observable<any[]>;
   newItem: any = "";
 

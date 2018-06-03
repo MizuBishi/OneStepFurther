@@ -3,9 +3,9 @@ import { BrowserModule } from "@angular/platform-browser";
 import { IonicApp, IonicModule, IonicErrorHandler } from "ionic-angular";
 import { MyApp } from "./app.component";
 
-import { AboutPage } from "../pages/about/about";
-import { ContactPage } from "../pages/contact/contact";
-import { HomePage } from "../pages/home/home";
+import { DashboardPage } from "../pages/dashboard/dashboard";
+import { AnalyticPage } from "../pages/analytic/analytic";
+import { StepPage } from "../pages/step/step";
 import { TabsPage } from "../pages/tabs/tabs";
 import { DetailPage } from "../pages/detail/detail";
 
@@ -31,9 +31,9 @@ const firebaseConfig = {
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
-    ContactPage,
-    HomePage,
+    DashboardPage,
+    AnalyticPage,
+    StepPage,
     TabsPage,
     DetailPage
   ],
@@ -47,9 +47,9 @@ const firebaseConfig = {
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
-    ContactPage,
-    HomePage,
+    DashboardPage,
+    AnalyticPage,
+    StepPage,
     TabsPage,
     DetailPage
   ],

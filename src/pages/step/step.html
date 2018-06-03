@@ -1,29 +1,31 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Home</ion-title>
+    <ion-title>Step</ion-title>
   </ion-navbar>
 
-  <ion-toolbar>
-    <ion-searchbar [(ngModel)]="newItem" (keyup.enter)="addItem()" (ionCancel)="this.newItem=''" placeholder="We Need..."></ion-searchbar>
-    <ion-buttons end>
-      <button ion-button solid icon-right (click)="addItem()" style="margin-right:12px; padding:21px 16px 21px 16px">Add
-        <ion-icon name="md-basket"></ion-icon>
-      </button>
-    </ion-buttons>
-  </ion-toolbar>
+
 
 </ion-header>
 
 
 <ion-content (ionScroll)="onScroll($event)">
 
+
   <div padding>
-    <h2>We Need...</h2>
+    <h2>Your Steps</h2>
   </div>
+
+  <ion-searchbar [(ngModel)]="newItem" (keyup.enter)="addItem()" (ionCancel)="this.newItem=''" placeholder="How many steps did you today?">
+  </ion-searchbar>
+  <ion-buttons end>
+    <button ion-button solid icon-right (click)="addItem()" style="margin-right:12px; padding:21px 16px 21px 16px">Add
+    </button>
+  </ion-buttons>
 
   <ion-list no-padding>
     <ion-item-sliding *ngFor="let item of needItems | async" (click)="itemSelected(item)">
+
       <button ion-item>
         {{ item.value }}
       </button>
@@ -38,3 +40,5 @@
   </ion-list>
 
 </ion-content>
+
+<!-- [navParams]="{item:item}" -->

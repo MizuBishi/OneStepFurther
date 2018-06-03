@@ -3,14 +3,12 @@ import { NavController } from "ionic-angular";
 import { Chart } from "chart.js";
 
 @Component({
-  selector: 'page-about',
-  templateUrl: 'about.html'
+  selector: 'page-dashboard',
+  templateUrl: 'dashboard.html'
 })
-export class AboutPage {
+export class DashboardPage {
 
-  constructor(public navCtrl: NavController) {
-
-  }
+  constructor(public navCtrl: NavController) {}
 
   @ViewChild("doughnutCanvas") doughnutCanvas;
   doughnutChart: any;

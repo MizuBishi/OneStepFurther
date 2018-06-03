@@ -4,14 +4,11 @@ import Chart from 'chart.js';
 
 
 @Component({
-  selector: 'page-contact',
-  templateUrl: 'contact.html'
+  selector: 'page-analytic',
+  templateUrl: 'analytic.html'
 })
-export class ContactPage {
+export class AnalyticPage {constructor(public navCtrl: NavController) {}
 
-  constructor(public navCtrl: NavController) {
-
-  }
 @ViewChild('barCanvas') barCanvas;
 
   barChart: any;
