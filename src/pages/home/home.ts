@@ -1,6 +1,8 @@
 import { Component, ViewChild } from "@angular/core";
 import { NavController, Content } from "ionic-angular";
 
+import { DetailPage } from "../detail/detail";
+
 import { FirebaseServiceProvider } from "./../../providers/firebase-service/firebase-service";
 import { Observable } from "rxjs/Observable";
 
@@ -27,17 +29,19 @@ export class HomePage {
     } else {
       this.firebaseService.addItem(this.newItem).then(() => {
         this.newItem = "";
-        // this.keyboard.close();
         this.content.scrollToBottom();
       });
     }
+  }
+
+  itemSelected(item) {
+    this.navCtrl.push(DetailPage, {
+      item: item,
+    })
   }
 
   removeItem(id) {
     this.firebaseService.deleteItem(id);
   }
 
-  onScroll(event) {
-    // this.keyboard.close();
-  }
 }

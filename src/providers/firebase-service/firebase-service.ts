@@ -8,6 +8,7 @@ import { Observable } from "rxjs/Observable";
   See https://angular.io/guide/dependency-injection for more info on providers
   and Angular DI.
 */
+
 @Injectable()
 export class FirebaseServiceProvider {
   itemsRef: AngularFireList<any>;
@@ -20,12 +21,11 @@ export class FirebaseServiceProvider {
     });
   }
 
-
   getItems() {
     return this.items;
   }
   addItem(newName) {
-    return this.itemsRef.push({ value: newName, isDone: false });
+    return this.itemsRef.push({ value: newName });
   }
   updateItem(key, newText) {
     return this.itemsRef.update(key, { value: newText });
