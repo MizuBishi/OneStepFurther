@@ -1,20 +1,13 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Step</ion-title>
+    <ion-title>Your Steps</ion-title>
   </ion-navbar>
-
-
 
 </ion-header>
 
 
 <ion-content (ionScroll)="onScroll($event)">
-
-
-  <div padding>
-    <h2>Your Steps</h2>
-  </div>
 
   <ion-searchbar [(ngModel)]="newItem" (keyup.enter)="addItem()" (ionCancel)="this.newItem=''" placeholder="How many steps did you today?">
   </ion-searchbar>
