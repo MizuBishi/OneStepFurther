@@ -11,8 +11,8 @@ import { Observable } from "rxjs/Observable";
   templateUrl: "step.html"
 })
 export class StepPage {
-  needItems: Observable<any[]>;
-  newItem: any = "";
+  steps: Observable<any[]>;
+  newStep: any = "";
 
   @ViewChild(Content) content: Content;
 
@@ -20,15 +20,15 @@ export class StepPage {
     public navCtrl: NavController,
     public firebaseService: FirebaseServiceProvider
   ) {
-    this.needItems = this.firebaseService.getItems();
+    this.steps = this.firebaseService.getItems();
   }
 
   addItem() {
-    if (this.newItem.length === 0 || !this.newItem.trim()) {
+    if (this.newStep.length === 0 || !this.newStep.trim()) {
       console.log("empty");
     } else {
-      this.firebaseService.addItem(this.newItem).then(() => {
-        this.newItem = "";
+      this.firebaseService.addItem(this.newStep).then(() => {
+        this.newStep = "";
         this.content.scrollToBottom();
       });
     }

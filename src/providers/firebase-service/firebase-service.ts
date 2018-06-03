@@ -15,7 +15,7 @@ export class FirebaseServiceProvider {
   items: Observable<any[]>;
 
   constructor(public afd: AngularFireDatabase) {
-    this.itemsRef = this.afd.list("/weneedItems/");
+    this.itemsRef = this.afd.list("/stepsItems/");
     this.items = this.itemsRef.snapshotChanges().map(changes => {
       return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
     });

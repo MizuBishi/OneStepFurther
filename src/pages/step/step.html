@@ -9,7 +9,7 @@
 
 <ion-content (ionScroll)="onScroll($event)">
 
-  <ion-searchbar [(ngModel)]="newItem" (keyup.enter)="addItem()" (ionCancel)="this.newItem=''" placeholder="How many steps did you today?">
+  <ion-searchbar [(ngModel)]="newStep" (keyup.enter)="addItem()" (ionCancel)="this.newStep=''" placeholder="How many steps did you today?">
   </ion-searchbar>
   <ion-buttons end>
     <button ion-button solid icon-right (click)="addItem()" style="margin-right:12px; padding:21px 16px 21px 16px">Add
@@ -17,7 +17,7 @@
   </ion-buttons>
 
   <ion-list no-padding>
-    <ion-item-sliding *ngFor="let item of needItems | async" (click)="itemSelected(item)">
+    <ion-item-sliding *ngFor="let item of steps | async" (click)="itemSelected(item)">
 
       <button ion-item>
         {{ item.value }}
