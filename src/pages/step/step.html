@@ -17,11 +17,10 @@
   </ion-buttons>
 
   <ion-list no-padding>
-    <ion-item-sliding *ngFor="let item of steps | async" (click)="itemSelected(item)">
-
-      <button ion-item>
+    <ion-item-sliding *ngFor="let item of steps | async">
+      <ion-item (click)="itemTapped($event, item)" detail-push> 
         {{ item.value }}
-      </button>
+      </ion-item>
       <ion-item-options side="right">
         <button ion-button color="danger" icon-only (click)="removeItem(item.key)">
           <ion-icon name="trash"></ion-icon>

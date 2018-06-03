@@ -10,9 +10,9 @@
   <ion-list>
     <ion-item>
       <ion-label>Number</ion-label>
-      <ion-input></ion-input>
+      <ion-input [(ngModel)]="selectedItem.value"></ion-input>
     </ion-item>
   </ion-list>
-  <button ion-button>Save</button>
+  <button ion-button (click)="updateItem()">Save</button>
 </ion-content>
 

@@ -1,23 +1,26 @@
 import { Component, ViewChild } from "@angular/core";
-import { NavController } from "ionic-angular";
+import { NavController, ToastController } from "ionic-angular";
 import { Chart } from "chart.js";
 
+import { AngularFireList } from "angularfire2/database/interfaces";
+import { Observable } from "rxjs/Observable";
+import { AngularFireDatabase } from "angularfire2/database";
+
 @Component({
-  selector: 'page-dashboard',
-  templateUrl: 'dashboard.html'
+  selector: "page-dashboard",
+  templateUrl: "dashboard.html"
 })
 export class DashboardPage {
-
-  constructor(public navCtrl: NavController) {}
 
   @ViewChild("doughnutCanvas") doughnutCanvas;
   doughnutChart: any;
   actualDate: any;
 
-
+  constructor(
+    public navCtrl: NavController,
+  ) {}
+  
   ionViewDidLoad() {
-    this.actualDate = new Date().toISOString().slice(0, 10);
-    
     this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
       type: "doughnut",
       data: {
@@ -53,5 +56,4 @@ export class DashboardPage {
       }
     });
   }
-
 }

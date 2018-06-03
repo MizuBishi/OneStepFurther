@@ -16,6 +16,7 @@ export class StepPage {
 
   @ViewChild(Content) content: Content;
 
+
   constructor(
     public navCtrl: NavController,
     public firebaseService: FirebaseServiceProvider
@@ -34,11 +35,17 @@ export class StepPage {
     }
   }
 
-  itemSelected(item) {
+  itemTapped(event, item) {
     this.navCtrl.push(DetailPage, {
-      item: item,
-    })
+      item: item
+    });
   }
+
+  // itemSelected(item) {
+  //   this.navCtrl.push(DetailPage, {
+  //     item: item,
+  //   })
+  // }
 
   removeItem(id) {
     this.firebaseService.deleteItem(id);

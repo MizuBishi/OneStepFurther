@@ -10,14 +10,14 @@ import { FirebaseServiceProvider } from "./../../providers/firebase-service/fire
 })
 
 export class DetailPage {
-  selectedItem: any = "";
+  selectedItem: any;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public firebaseService: FirebaseServiceProvider
   ) {
-    this.selectedItem = this.firebaseService.getItems();
+    this.selectedItem = navParams.get('item');
   }
 
   updateItem() {
