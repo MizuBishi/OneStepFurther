@@ -1,11 +1,24 @@
 <ion-header>
+
   <ion-navbar>
-    <ion-title>
-      About
-    </ion-title>
+    <ion-title>Dashboard</ion-title>
   </ion-navbar>
+
 </ion-header>
 
 <ion-content padding>
+<h1>{{actualDate}}</h1>
+<canvas #doughnutCanvas width="400" height="400"></canvas>
 
+<!-- <button ion-button outline style="margin-top: 50px" (click)="InsertNewSteps()">My Steps</button> -->
+<ion-list>
+<ion-list-header>
+  Steps
+</ion-list-header>
+
+<ion-item *ngFor="let step of stepList | async" 
+detail-push navPush="EditStepPage" [navParams]="{step:step}">
+  {{step.number}}
+</ion-item>
+</ion-list>
 </ion-content>

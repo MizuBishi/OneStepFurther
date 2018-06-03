@@ -1,3 +1,9 @@
 page-contact {
-
+  .and, .md {
+    page-analytics {
+      .scroll-content {
+          background-color: map-get($colors, light);
+      }
+    }
+  }
 }
