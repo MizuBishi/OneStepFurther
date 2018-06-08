@@ -5,9 +5,6 @@ import { FirebaseServiceProvider } from "./../../providers/firebase-service/fire
 import { Observable } from "rxjs/Observable";
 
 import { DetailPage } from "../detail/detail";
-import moment from 'moment';
-
-
 
 @Component({
   selector: "page-step",
