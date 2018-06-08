@@ -5,6 +5,8 @@ import { FirebaseServiceProvider } from "./../../providers/firebase-service/fire
 import { Observable } from "rxjs/Observable";
 
 import { DetailPage } from "../detail/detail";
+import moment from 'moment';
+
 
 
 @Component({
@@ -27,6 +29,7 @@ export class StepPage {
     this.steps = this.firebaseService.getItems();
   }
 
+
   addItem() {
     if (this.newStep.length === 0 || !this.newStep.trim()) {
       console.log("empty");
@@ -34,7 +37,7 @@ export class StepPage {
       this.firebaseService.addItem(this.newStep, this.timestamp).then(() => {
         this.newStep = "";
         this.timestamp = new Date();
-        // this.content.scrollToBottom();
+        this.content.scrollToBottom();
       });
     }
   }
@@ -48,5 +51,4 @@ export class StepPage {
   removeItem(id) {
     this.firebaseService.deleteItem(id);
   }
-
 }

@@ -37,7 +37,7 @@ export class FirebaseServiceProvider {
       value: newText,
     });
   }
-  
+
   deleteItem(key) {
     this.itemsRef.remove(key);
   }

@@ -1,10 +1,16 @@
 import { Component, ViewChild } from "@angular/core";
 import { NavController} from "ionic-angular";
 import { Chart } from "chart.js";
+import * as moment from 'moment';
+
+
 
 // import { AngularFireList } from "angularfire2/database/interfaces";
 // import { Observable } from "rxjs/Observable";
 // import { AngularFireDatabase } from "angularfire2/database";
+import { FirebaseServiceProvider } from "../../providers/firebase-service/firebase-service";
+// import { Observable } from "rxjs/Observable";
+
 
 @Component({
   selector: "page-dashboard",
@@ -14,13 +20,36 @@ export class DashboardPage {
 
   @ViewChild("doughnutCanvas") doughnutCanvas;
   doughnutChart: any;
+  allStepsValues: any;
+  total: number;
   actualDate: any;
+
+
 
   constructor(
     public navCtrl: NavController,
-  ) {}
-  
+    public firebaseService: FirebaseServiceProvider
+  ) {
+    this.actualDate =  new Date();
+  }
+
+  calculateItems() {
+    this.total = 0;
+    this.allStepsValues = this.firebaseService.getItems();
+    this.allStepsValues.subscribe(items => {
+      items.forEach(item => {
+        this.total = this.total + item.value;
+        console.log(item);
+        console.log(this.total);
+      })
+    })
+    return this.total;
+  }
+
   ionViewDidLoad() {
+  
+    this.actualDate = new Date();
+
     this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
       type: "doughnut",
       data: {
@@ -46,13 +75,6 @@ export class DashboardPage {
               fontSize: 20,
             }
         },
-        title: {
-          display: true,
-          fontSize: 25,
-          position: 'top',
-          fontFamily: 'Helvetica Neue',
-          padding: 15,
-        }
       }
     });
   }

@@ -1,7 +1,7 @@
 import { Component, ViewChild } from "@angular/core";
 import { NavController } from 'ionic-angular';
 // import { ToastController } from 'ionic-angular';
-import Chart from 'chart.js';
+import { Chart } from 'chart.js';
 
 import { AngularFireList } from "angularfire2/database/interfaces";
 import { Observable } from "rxjs/Observable";
@@ -30,10 +30,11 @@ export class AnalyticPage {
     day: 0
 	};
 	
-	@ViewChild('barCanvas') barCanvas;
-	barChart: any;
-	actualDate: any;
+	@ViewChild('valueBarsCanvas') valueBarsCanvas;
+	valueBarsChart: any;
   chartData = null;
+  
+  actualDate: any;
 	
 	constructor(
 		public navCtrl: NavController,
@@ -42,7 +43,7 @@ export class AnalyticPage {
 	) {}
 
 	ionViewDidLoad() {
-    this.ref = this.db.list("stepNr", ref => ref.orderByChild("day"));
+    this.ref = this.db.list("stepNr", ref => ref.orderByChild('day'));
 
     this.ref.valueChanges().subscribe(result => {
       if (this.chartData) {
@@ -51,13 +52,13 @@ export class AnalyticPage {
         this.createCharts(result);
       }
     });
-	}
-	
+  }
+  	
 	getReportValues() {
     let reportByDay = {
-      1: null,
-      2: null,
-      3: null,
+      1: 3,
+      2: 4,
+      3: 3,
       4: null,
       5: null,
       6: null,
@@ -70,21 +71,35 @@ export class AnalyticPage {
     return Object.keys(reportByDay).map(a => reportByDay[a]);
 	}
 
+
+  ////////////////////////// UPDATE //////////////////////////
+
+  updateCharts(data) {
+		this.chartData = data;
+		let chartData = this.getReportValues();
+		
+		// Update our dataset
+		this.valueBarsChart.data.datasets.forEach((dataset) => {
+			dataset.data = chartData
+		});
+		this.valueBarsChart.update();
+	}
+
+  ////////////////////////// CREATE //////////////////////////
 	createCharts(data) {
     this.chartData = data;
-
     // Calculate Values for the Chart
     let chartData = this.getReportValues();
 
     // Create the chart
-    this.barChart = new Chart(this.barCanvas.nativeElement, {
-      type: "horizontalBar",
+    this.valueBarsChart = new Chart(this.valueBarsCanvas.nativeElement, {
+      type: "bar",
       data: {
         labels: Object.keys(this.days).map(a => this.days[a].name),
         datasets: [
           {
             data: chartData,
-            backgroundColor: "#32db64"
+            backgroundColor: "rgba(255, 99, 132, 0.2)"
           }
         ]
       },
@@ -99,6 +114,7 @@ export class AnalyticPage {
                 beginAtZero: true
               }
             }
+  
           ],
           yAxes: [
             {
@@ -114,21 +130,10 @@ export class AnalyticPage {
       }
 		});
 	}
-		
-	updateCharts(data) {
-		this.chartData = data;
-		let chartData = this.getReportValues();
-		
-		// Update our dataset
-		this.barChart.data.datasets.forEach((dataset) => {
-			dataset.data = chartData
-		});
-		this.barChart.update();
-	}
 }
 	
   // ionViewDidLoad() {
-  //   this.barChart = new Chart(this.barCanvas.nativeElement, {
+  //   this.valueBarsChart = new Chart(this.valueBarsCanvas.nativeElement, {
 	// 		type: 'horizontalBar',
 	// 		data: {
 	// 			datasets: [{

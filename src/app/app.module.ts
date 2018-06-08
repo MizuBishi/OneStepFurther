@@ -17,6 +17,7 @@ import { FirebaseServiceProvider } from "../providers/firebase-service/firebase-
 import { HttpModule } from '@angular/http'; 
 import { AngularFireDatabaseModule } from 'angularfire2/database'; 
 import { AngularFireModule } from 'angularfire2';
+import { MomentModule } from 'angular2-moment';
 
 
 const firebaseConfig = {
@@ -41,6 +42,7 @@ const firebaseConfig = {
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpModule,
+    MomentModule,
     AngularFireDatabaseModule,
     AngularFireModule.initializeApp(firebaseConfig)
   ],
