@@ -24,16 +24,20 @@ export class FirebaseServiceProvider {
   getItems() {
     return this.items;
   }
-  addItem(newName) {
+
+  addItem(newName, timestamp) {
     return this.itemsRef.push({
       value: newName,
+      timestamp: timestamp,
     });
   }
+
   updateItem(key, newText) {
     return this.itemsRef.update(key, {
       value: newText,
     });
   }
+  
   deleteItem(key) {
     this.itemsRef.remove(key);
   }

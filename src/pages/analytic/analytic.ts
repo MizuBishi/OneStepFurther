@@ -1,5 +1,6 @@
 import { Component, ViewChild } from "@angular/core";
-import { NavController, ToastController } from 'ionic-angular';
+import { NavController } from 'ionic-angular';
+// import { ToastController } from 'ionic-angular';
 import Chart from 'chart.js';
 
 import { AngularFireList } from "angularfire2/database/interfaces";
@@ -36,7 +37,7 @@ export class AnalyticPage {
 	
 	constructor(
 		public navCtrl: NavController,
-		private toastCtrl: ToastController,
+		// private toastCtrl: ToastController,
 		private db: AngularFireDatabase
 	) {}
 

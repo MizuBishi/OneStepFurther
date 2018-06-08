@@ -11,17 +11,21 @@
 
   <ion-searchbar [(ngModel)]="newStep" (keyup.enter)="addItem()" (ionCancel)="this.newStep=''" placeholder="How many steps did you today?">
   </ion-searchbar>
+
   <ion-buttons end>
     <button ion-button solid icon-right (click)="addItem()" style="margin-right:12px; padding:21px 16px 21px 16px">Add
     </button>
   </ion-buttons>
 
   <ion-list no-padding>
+    
     <ion-item-sliding *ngFor="let item of steps | async">
+
       <ion-item (click)="itemTapped($event, item)" detail-push> 
         <h3>{{ item.value }}</h3>
         <p></p>
       </ion-item>
+
       <ion-item-options side="right">
         <button ion-button color="danger" icon-only (click)="removeItem(item.key)">
           <ion-icon name="trash"></ion-icon>
