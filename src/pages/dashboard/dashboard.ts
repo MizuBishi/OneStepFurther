@@ -1,14 +1,7 @@
 import { Component, ViewChild } from "@angular/core";
 import { NavController} from "ionic-angular";
 import { Chart } from "chart.js";
-
-
-
-// import { AngularFireList } from "angularfire2/database/interfaces";
-// import { Observable } from "rxjs/Observable";
-// import { AngularFireDatabase } from "angularfire2/database";
 import { FirebaseServiceProvider } from "../../providers/firebase-service/firebase-service";
-// import { Observable } from "rxjs/Observable";
 
 
 @Component({
@@ -19,42 +12,43 @@ export class DashboardPage {
 
   @ViewChild("doughnutCanvas") doughnutCanvas;
   doughnutChart: any;
-  allStepsValues: any;
-  total: number;
-  actualDate: any;
-
-
 
   constructor(
     public navCtrl: NavController,
     public firebaseService: FirebaseServiceProvider
   ) {
-    this.actualDate =  new Date();
   }
 
-  calculateItems() {
-    this.total = 0;
-    this.allStepsValues = this.firebaseService.getItems();
-    this.allStepsValues.subscribe(items => {
+  update() {
+    const today = new Date().toISOString().substr(0, 10);
+    this.firebaseService.getItems().subscribe(items => {
+      let totals = {};
       items.forEach(item => {
-        this.total = this.total + item.value;
-        console.log(item);
-        console.log(this.total);
-      })
-    })
-    return this.total;
+        if (item.timestamp) {
+          const day = item.timestamp.substr(0, 10);
+          if (today === day) {
+            console.log('today', item);
+            const who = item.name || '?';
+            totals[who] = (totals[who] || 0) + parseInt(item.value);
+          }
+        }
+      });
+      const labels = Object.keys(totals);
+      const data = labels.map(label => totals[label]);
+      console.log(labels, data);
+      this.doughnutChart.chart.config.data.datasets[0].data = data;
+      this.doughnutChart.chart.config.data.labels = labels;
+      this.doughnutChart.chart.update();
+    });
   }
 
   ionViewDidLoad() {
-  
-    this.actualDate = new Date();
-
     this.doughnutChart = new Chart(this.doughnutCanvas.nativeElement, {
       type: "doughnut",
       data: {
         datasets: [
           {
-            data: [12, 19],
+            data: [1, 2],
             backgroundColor: [
               "rgba(255, 99, 132, 0.2)",
               "rgba(54, 162, 235, 0.2)",
@@ -63,18 +57,19 @@ export class DashboardPage {
             borderWidth: [0,0],
           }
         ],
-        labels: ["Michelle", "Ronia"]
+        labels: ['A', 'B'],
       },
       options: {
         legend: {
-            display: true,
-            position: 'bottom',
-            fullWidth: true,
-            labels: {
-              fontSize: 20,
-            }
+          display: true,
+          position: 'bottom',
+          fullWidth: true,
+          labels: {
+            fontSize: 20,
+          }
         },
       }
     });
+    this.update();
   }
 }
