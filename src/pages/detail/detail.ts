@@ -22,7 +22,7 @@ export class DetailPage {
 
   updateItem() {
     this.firebaseService
-      .updateItem(this.selectedItem.key, this.selectedItem.value)
+      .updateItem(this.selectedItem.key, this.selectedItem.value, this.selectedItem.timestamp)
       .then(() => {
         this.navCtrl.pop();
       });
