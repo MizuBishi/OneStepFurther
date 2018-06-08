@@ -12,11 +12,13 @@ export class DashboardPage {
 
   @ViewChild("doughnutCanvas") doughnutCanvas;
   doughnutChart: any;
+  actualDate: any;
 
   constructor(
     public navCtrl: NavController,
     public firebaseService: FirebaseServiceProvider
   ) {
+    this.actualDate = new Date().toString().substr(0, 15);
   }
 
   update() {
