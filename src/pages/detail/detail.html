@@ -12,7 +12,15 @@
       <ion-label>Number</ion-label>
       <ion-input [(ngModel)]="selectedItem.value"></ion-input>
     </ion-item>
+    <ion-item>
+      <ion-label>Date</ion-label>
+      <ion-datetime displayFormat="MMM DD" ></ion-datetime>
+    </ion-item>
   </ion-list>
+
   <button ion-button (click)="updateItem()">Save</button>
 </ion-content>
+
+<!-- [(ngModel)]="event.timeStarts" -->
+<!-- [(ngModel)]="myDate" -->
 

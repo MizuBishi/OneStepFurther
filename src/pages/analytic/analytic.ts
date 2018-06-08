@@ -15,13 +15,13 @@ export class AnalyticPage {
 	ref: AngularFireList<any>;
 
 	days = [
-    { value: 1, name: "Monday" },
-    { value: 2, name: "Tuesday" },
-    { value: 3, name: "Wednesday" },
-    { value: 4, name: "Thursday" },
-    { value: 5, name: "Friday" },
-    { value: 6, name: "Saturday" },
-    { value: 7, name: "Sunday" }
+    { value: 1, name: "Mo" },
+    { value: 2, name: "Tu" },
+    { value: 3, name: "We" },
+    { value: 4, name: "Th" },
+    { value: 5, name: "Fr" },
+    { value: 6, name: "Sa" },
+    { value: 7, name: "Su" }
   ];
 
   stepNr = {
