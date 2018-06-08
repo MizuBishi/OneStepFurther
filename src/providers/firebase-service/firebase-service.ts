@@ -29,12 +29,15 @@ export class FirebaseServiceProvider {
     return this.itemsRef.push({
       value: newName,
       timestamp: timestamp,
+      //TODO mit Login machen
+      name: "Michelle",
     });
   }
 
-  updateItem(key, newText) {
+  updateItem(key, newText, newTimestamp) {
     return this.itemsRef.update(key, {
       value: newText,
+      timestamp: newTimestamp,
     });
   }
 
