@@ -27,7 +27,6 @@ export class DashboardPage {
         if (item.timestamp) {
           const day = item.timestamp.substr(0, 10);
           if (today === day) {
-            console.log('today', item);
             const who = item.name || '?';
             totals[who] = (totals[who] || 0) + parseInt(item.value);
           }
@@ -35,7 +34,6 @@ export class DashboardPage {
       });
       const labels = Object.keys(totals);
       const data = labels.map(label => totals[label]);
-      console.log(labels, data);
       this.doughnutChart.chart.config.data.datasets[0].data = data;
       this.doughnutChart.chart.config.data.labels = labels;
       this.doughnutChart.chart.update();
